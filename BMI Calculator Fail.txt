@@ -1,0 +1,54 @@
+import tkinter
+from tkinter import messagebox
+
+def reset_entry():
+    height_label.delete(0,"end")
+    weight_label.delete(0,"end")
+
+def calculate_bmi():
+    kg = int(weight_label.get())
+    m = int(height_label.get())/100
+    bmi = kg/(m*m)
+    bmi = round(bmi,1)
+    bmi_index(bmi)
+
+def bmi_index(bmi):
+    if bmi < 18.5:
+        messagebox.showinfo("bmi-pythonguides",f'BMI ={bmi} is Underweight')
+    elif (bmi > 18.5) and (bmi < 24.9):
+        messagebox.showinfo("bmi-pythonguides",f'BMI = {bmi} is Normal')
+    elif (bmi > 24.9) and (bmi < 29.9):
+        messagebox.showinfo("bmi-pythonguides", f'BMI = {bmi} is Overweight')
+    elif (bmi > 29.9):
+        messagebox.showinfo("bmi-pythonguides", f'BMI = {bmi} is Obesity')
+    else:
+        messagebox.showinfo("bmi-pythonguides","Please insert a valid value")
+
+
+
+
+window = tkinter.Tk()
+window.title("BMI Claculator")
+window.minsize(300,300)
+
+
+label_weight = tkinter.Label(text="Enter Your Weight (kg)")
+label_weight.place(x=90, y=50)
+
+weight_entry = tkinter.Entry(width=30)
+weight_entry.place(x=60, y=80)
+
+label_height = tkinter.Label(text="Enter Your Height (cm)")
+label_height.place(x=90, y=110)
+
+height_entry = tkinter.Entry(width=30)
+height_entry.place(x=60, y=140)
+
+
+calculate_button = tkinter.Button(text="Calculate")
+calculate_button.place(x=125, y=170)
+#calculate_button.pack()
+
+
+
+window.mainloop()
